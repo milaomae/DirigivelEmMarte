@@ -1,0 +1,23 @@
+ 0 Acheron          465  591
+ 1 Arena           2815  599
+ 2 Arrakeen         217  997
+ 3 Bakhuysen       2763 1065 
+ 4 Bradbury        1669 1523
+ 5 Burroughs       2919  777 
+ 6 Cairo            885 1045
+ 7 Dumont          2283  985
+ 8 Echus Overlook   991  727
+ 9 Esperança       3232 1077
+10 Gondor          3822 1199
+11 Lakefront       2840 1307  
+12 Lowell          3664  787 
+13 Moria           3688 1453
+14 Nicosia          665 1039
+15 Odessa          2593 1383 
+16 Perseverança    2725 1675
+17 Rowan           2317 1363
+18 Senzeni Na       775 1357
+19 Sheffield        651  939
+20 Temperança      2103 1389
+21 Tharsis          531  809
+22 Underhill       1552 1051
