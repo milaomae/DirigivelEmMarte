@@ -1,1 +1,2 @@
 C:\Users\u17393\Desktop\RotasAereasMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.exe.config
+C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.exe.config
