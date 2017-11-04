@@ -28,12 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnAbrirCaminhos = new System.Windows.Forms.Button();
+            this.fileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.SuspendLayout();
+            // 
+            // btnAbrirCaminhos
+            // 
+            this.btnAbrirCaminhos.Location = new System.Drawing.Point(3, 2);
+            this.btnAbrirCaminhos.Name = "btnAbrirCaminhos";
+            this.btnAbrirCaminhos.Size = new System.Drawing.Size(101, 23);
+            this.btnAbrirCaminhos.TabIndex = 0;
+            this.btnAbrirCaminhos.Text = "Ler caminhos";
+            this.btnAbrirCaminhos.UseVisualStyleBackColor = true;
+            this.btnAbrirCaminhos.Click += new System.EventHandler(this.btn_ler_caminhos);
+            // 
+            // fileDialog
+            // 
+            this.fileDialog.FileName = "openFileDialog1";
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(585, 330);
+            this.Controls.Add(this.btnAbrirCaminhos);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnAbrirCaminhos;
+        private System.Windows.Forms.OpenFileDialog fileDialog;
     }
 }
 
