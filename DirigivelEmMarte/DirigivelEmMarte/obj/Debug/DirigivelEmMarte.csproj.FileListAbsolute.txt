@@ -1,2 +1,10 @@
 C:\Users\u17393\Desktop\RotasAereasMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.exe.config
 C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.exe.config
+C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.exe
+C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.pdb
+C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.csprojResolveAssemblyReference.cache
+C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.Form1.resources
+C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.Properties.Resources.resources
+C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.csproj.GenerateResource.Cache
+C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.exe
+C:\Users\u17393\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.pdb
