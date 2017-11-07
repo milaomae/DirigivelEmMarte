@@ -1,8 +1,9 @@
-
+using System;
+using System.Drawing;
 
 namespace DirigivelEmMarte{
     
-public class caminhoPintado : ListaSimples<caminhoPintado> {
+public class caminhoPintado : IComparable<caminhoPintado> {
     
     Color cor;
     Point p1, p2;
@@ -33,12 +34,17 @@ public class caminhoPintado : ListaSimples<caminhoPintado> {
       this.p2 = p2;
     }
     
-    public DesenharCaminho(Color cor,Graphics g)
+    public void DesenharCaminho(Color cor,Graphics g)
     {
       
       Pen pen = new Pen(cor);
       g.DrawLine(pen, p1, p2);
     
     }
-}
+
+        public int CompareTo(caminhoPintado other)
+        {
+            return 0;
+        }
+    }
 }
