@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DirigivelEmMarte
 {
-    class PilhaLista<Dado> : ListaSimplesP<Dado>, IStack<Dado>
+    class PilhaLista<Dado> : ListaSimples<Dado>, IStack<Dado>
     {
         public Dado Desempilhar()
         {
