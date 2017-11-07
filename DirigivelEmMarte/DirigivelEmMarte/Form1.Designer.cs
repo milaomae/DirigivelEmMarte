@@ -34,7 +34,7 @@ namespace DirigivelEmMarte
             this.label2 = new System.Windows.Forms.Label();
             this.cb_cidadeSaida = new System.Windows.Forms.ComboBox();
             this.cb_cidadeDestino = new System.Windows.Forms.ComboBox();
-            this.cd_melhorCaminho = new System.Windows.Forms.ComboBox();
+            this.cb_melhorCaminho = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_tracarMelhores = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -100,13 +100,13 @@ namespace DirigivelEmMarte
             this.cb_cidadeDestino.Size = new System.Drawing.Size(155, 24);
             this.cb_cidadeDestino.TabIndex = 5;
             // 
-            // cd_melhorCaminho
+            // cb_melhorCaminho
             // 
-            this.cd_melhorCaminho.FormattingEnabled = true;
-            this.cd_melhorCaminho.Location = new System.Drawing.Point(162, 522);
-            this.cd_melhorCaminho.Name = "cd_melhorCaminho";
-            this.cd_melhorCaminho.Size = new System.Drawing.Size(155, 24);
-            this.cd_melhorCaminho.TabIndex = 7;
+            this.cb_melhorCaminho.FormattingEnabled = true;
+            this.cb_melhorCaminho.Location = new System.Drawing.Point(162, 522);
+            this.cb_melhorCaminho.Name = "cb_melhorCaminho";
+            this.cb_melhorCaminho.Size = new System.Drawing.Size(155, 24);
+            this.cb_melhorCaminho.TabIndex = 7;
             // 
             // label3
             // 
@@ -132,7 +132,7 @@ namespace DirigivelEmMarte
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 589);
             this.Controls.Add(this.btn_tracarMelhores);
-            this.Controls.Add(this.cd_melhorCaminho);
+            this.Controls.Add(this.cb_melhorCaminho);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cb_cidadeDestino);
             this.Controls.Add(this.cb_cidadeSaida);
@@ -160,7 +160,7 @@ namespace DirigivelEmMarte
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cb_cidadeSaida;
         private System.Windows.Forms.ComboBox cb_cidadeDestino;
-        private System.Windows.Forms.ComboBox cd_melhorCaminho;
+        private System.Windows.Forms.ComboBox cb_melhorCaminho;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_tracarMelhores;
     }
