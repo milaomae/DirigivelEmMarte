@@ -13,7 +13,10 @@ namespace DirigivelEmMarte
 {
     public partial class Form1 : Form
     {
-        //ListaSimplesP<Cidade> listaCidades = new ListaSimplesP<Cidade>;
+        
+        //ListaSimples<Cidade> listaCidades = new ListaSimples<Cidade>;
+        ListaSimples<caminhoPintado> listaCaminhosP = new ListaSimples<caminhoPintado>;
+        
         public Form1()
         {
             InitializeComponent();
@@ -23,7 +26,14 @@ namespace DirigivelEmMarte
         private void btnTracarCam_Click(object sender, EventArgs e)
         {
             
-
+            //escolher saída e destino
+            //recolher dados dos caminhos..pilha
+            // pegar cod de cidades intermediárias do caminho encontrado..
+            // listaCaminhosP.inserirAoFim(new caminhoPintado());
+            
+            //definir caminho pelo preço/distancia/tempo
+            
+            //para traçar todos os caminhos --> pegar do leitura de caminhos..
 
         }
 
@@ -49,18 +59,20 @@ namespace DirigivelEmMarte
             arq.Close();
         }
 
-        public void DesenharCaminho(PaintEventArgs e)
+        
+        //private void btnTracarCam_Paint(object sender, PaintEventArgs e)
+        //{
+        //    DesenharCaminho(e);
+        //}
+        
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            Color cor = Color.Red;
-            Pen pen = new Pen(cor);
-
-            Graphics g = e.Graphics;
-            g.DrawLine(pen, new Point(10, 20), new Point(500, 1000)); 
-        }
-
-        private void btnTracarCam_Paint(object sender, PaintEventArgs e)
-        {
-            DesenharCaminho(e);
+            Graphics g = e.Graphics;            
+            //caminhoPintado é uma listaSimples que armazenará os caminhos a serem mostrados
+            while(!listaCaminhosP.ChegouNoFim()){
+                  caminhoPintado cp = listaCaminhosP.Atual.Info;
+                  cp.DesenharCaminho(Color.Red, g);
+            }
         }
     }
 }
