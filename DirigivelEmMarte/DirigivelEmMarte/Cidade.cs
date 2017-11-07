@@ -1,6 +1,8 @@
+using System;
+
 namespace DirigivelEmMarte
 {
-  public class Cidade : ListaSimples<Cidade>
+  public class Cidade : IComparable<Cidade>
   {
     int cod, coordX, coordY;
     string nomeCidade;
@@ -36,6 +38,10 @@ namespace DirigivelEmMarte
       get{ return nomeCidade; }
       set{ nomeCidade = value; }
     }
-    
-  }
+
+        public int CompareTo(Cidade other)
+        {
+            return 0;
+        }
+    }
 }
