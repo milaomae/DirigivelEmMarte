@@ -1,5 +1,7 @@
 
 
+namespace DirigivelEmMarte{
+    
 public class caminhoPintado : ListaSimples<caminhoPintado> {
     
     Color cor;
@@ -38,4 +40,5 @@ public class caminhoPintado : ListaSimples<caminhoPintado> {
       g.DrawLine(pen, p1, p2);
     
     }
+}
 }
