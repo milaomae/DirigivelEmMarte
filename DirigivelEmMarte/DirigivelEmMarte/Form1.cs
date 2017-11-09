@@ -24,49 +24,122 @@ namespace DirigivelEmMarte
 
         ListaSimples<Cidade> listaCidades = new ListaSimples<Cidade>();
         //ListaSimples<caminhoPintado> listaCaminhosP = new ListaSimples<caminhoPintado>();
-        
+
+
+        //cor de desenho de caminho padrão
+        Color corDesenho = Color.Red;
 
         public Form1()
         {
             InitializeComponent();
             caminhoMatriz = new Caminho[23, 23];
-        }
+        }        
 
-        private void btn_ler_caminhos(object sender, EventArgs e)
+        public void LerCaminhos()
         {
-            if (fileDialog.ShowDialog() == DialogResult.OK)
+            StreamReader arquivo = new StreamReader("C:\\Users\\comae\\Desktop\\DirigivelEmMarte\\CaminhosEntreCidadesMarte.txt");
+            String linha = "";
+            int cidadeAtual, cidadeDestino, tempo;
+            double preco, distancia;
+
+            while (!arquivo.EndOfStream)
             {
-                StreamReader arquivo = new StreamReader(fileDialog.FileName);
-                String linha = arquivo.ReadLine();
+                linha = arquivo.ReadLine();
+                cidadeAtual = Convert.ToInt32(linha.Substring(0, 2).Trim());
+                cidadeDestino = Convert.ToInt32(linha.Substring(2, 3).Trim());
+                tempo = Convert.ToInt32(linha.Substring(5, 6).Trim());
+                preco = Convert.ToDouble(linha.Substring(11, 4).Trim());
+                distancia = Convert.ToDouble(linha.Substring(15).Trim());
 
+                caminhoMatriz[cidadeAtual, cidadeDestino] = new Caminho(cidadeAtual, cidadeDestino, tempo, preco, distancia);
 
-                while ((linha = arquivo.ReadLine()) != null)
-                {
-
-                    int cidadeAtual = Convert.ToInt32(linha.Substring(0, 2).Trim());
-                    int cidadeDestino = Convert.ToInt32(linha.Substring(2, 3).Trim());
-                    int tempo = Convert.ToInt32(linha.Substring(5, 6).Trim());
-                    double preco = Convert.ToDouble(linha.Substring(11, 4).Trim());
-                    double distancia = Convert.ToDouble(linha.Substring(15).Trim());
-
-                    caminhoMatriz[cidadeAtual, cidadeDestino] = new Caminho(cidadeAtual, cidadeDestino, tempo, preco, distancia);
-
-                }
-
-                arquivo.Close();
             }
+
+            arquivo.Close();
         }
 
+        public void LerCidades()
+        {
+            StreamReader arq = new StreamReader("C:\\Users\\comae\\Desktop\\DirigivelEmMarte\\CidadesMarte.txt");
+            String linha = "";
+            int codigo = -1;
+            string cidade = "";
+            int cordx, cordy = 0;
+            while (!arq.EndOfStream)
+            {
+                linha = arq.ReadLine();
+                codigo = Convert.ToInt32(linha.Substring(0, 2).Trim());
+                cidade = linha.Substring(2, 17).Trim();
+
+                //dividindo as coordenadas pelo tamanho do mapa original obtemos uma razão que indica
+                //aonde o ponto se encontra proporcionalmente ao tamanho do mapa, dessa forma, quando 
+                //quisermos encontrar a coordenada, multiplicamos o valor desta pela dimensão do mapa 
+                //exibido na tela
+                cordx = (Convert.ToInt32(linha.Substring(19, 4).Trim()));
+                cordy = (Convert.ToInt32(linha.Substring(23).Trim()));
+
+                listaCidades.InserirAposFim(new Cidade(codigo, cidade, cordx, cordy));
+
+            }
+            arq.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LerCidades();            
+
+            //limpando combobox
+            cb_cidadeDestino.Items.Clear();
+            cb_cidadeSaida.Items.Clear();
+            cb_melhorCaminho.Items.Clear();
+
+            //preenchendo comboBox com o nome das cidades
+            listaCidades.IniciarPercursoSequencial();
+            while (!listaCidades.ChegouNoFim())
+            {
+                cb_cidadeDestino.Items.Add(listaCidades.Atual.Info.NomeCidade);
+                cb_cidadeSaida.Items.Add(listaCidades.Atual.Info.NomeCidade);
+
+                listaCidades.Avancar();
+            }
+            
+            //inserindo valor e item para o filtro de Melhor Caminho
+            cb_melhorCaminho.Items.Insert(0, "Tempo");
+            cb_melhorCaminho.Items.Insert(1, "Dinheiro");
+            cb_melhorCaminho.Items.Insert(2, "Distância");
+            
+            LerCaminhos();
+        }
+
+        //adicionar caso em que a cidade origem = cidade destino...
         public void buscarCaminho()
         {
             int cidadeAtual, cidadeDestino;
+            //pega o valor do comboBox de melhor caminho
+            caso = cb_melhorCaminho.SelectedIndex;
+
+            listaCidades.IniciarPercursoSequencial();
+            while (!listaCidades.ChegouNoFim())
+            {
+                if (listaCidades.Atual.Info.NomeCidade.Equals(cb_cidadeSaida.SelectedItem.ToString()))
+                    cidadeInicial = listaCidades.Atual.Info.Cod;
+
+                if (listaCidades.Atual.Info.NomeCidade.Equals(cb_cidadeDestino.SelectedItem.ToString()))
+                    cidadeFinal = listaCidades.Atual.Info.Cod;
+
+                listaCidades.Avancar();
+            }
+
+            //cidadeInicial = 0;
+            //cidadeFinal = 8;
+            
             cidadeAtual = cidadeInicial;
             cidadeDestino = 0;
             bool achou = false;
 
             switch (caso)
             {
-                case 0: //Busca caminho sem nenhum filtro
+                case -1: //Busca caminho sem nenhum filtro
                     do
                     {
                         for (; cidadeDestino < 23; cidadeDestino++)
@@ -83,10 +156,18 @@ namespace DirigivelEmMarte
                         if (cidadeFinal == caminhoPilha.oTopo().CidadeDestino)
                         {
                             //Achei
-                            pbAreaDesenho.Invalidate();
-                            caminhoPilha.Desempilhar();
-                            cidadeAtual = caminhoPilha.oTopo().CidadeAtual;
-                            cidadeDestino = caminhoPilha.oTopo().CidadeDestino;
+                             caminhoEncontrado.Empilhar(caminhoPilha.Desempilhar());
+                            if (!caminhoPilha.EstaVazia())
+                            {
+                                cidadeAtual = caminhoPilha.oTopo().CidadeAtual;
+                                cidadeDestino = caminhoPilha.oTopo().CidadeDestino;
+                            }
+                            
+
+                            DesenhaCaminho(corDesenho, pbAreaDesenho.CreateGraphics());                         
+
+                            
+                            
 
                         }
                         else
@@ -117,36 +198,45 @@ namespace DirigivelEmMarte
                     break;
             }
 
-            pbAreaDesenho.SizeMode = PictureBoxSizeMode.StretchImage;
+            //pbAreaDesenho.SizeMode = PictureBoxSizeMode.StretchImage;
         }
+
+        private void pbAreaDesenho_MouseMove(object sender, MouseEventArgs e)
+        {
+            stMensagem.Items[0].Text = e.X + "," + e.Y;
+        }
+
+      
 
         private void btnTracarCam_Click(object sender, EventArgs e)
         {
             //usuário traça caminhos específicos 
-            if ((!(cb_cidadeSaida.Text == "") && !(cb_cidadeDestino.Text == "")) 
-                    || (!(cb_cidadeSaida.Text == "") && cb_cidadeDestino.Text == "") 
-                    || (cb_cidadeSaida.Text == "" && !(cb_cidadeDestino.Text == "")))
-            {
-                if (!(cb_cidadeSaida.Text == "") && !(cb_cidadeDestino.Text == ""))
-                {
-                    //usuário escolhe um melhor caminho a ser traçado
-                    if (!(cb_melhorCaminho.Text == ""))
-                    {
-                        //não há um melhor caminho a ser traçado
-                    }
-                    else
-                    {
-                        //caso tenha um melhor caminho a tracar
-                    }
-                }
-                else
-                    MessageBox.Show("Por favor preencha a cidade saída ou destino");
-                
-            }
-            else
-            {
+            //if ((!(cb_cidadeSaida.Text == "") && !(cb_cidadeDestino.Text == "")) 
+            //        || (!(cb_cidadeSaida.Text == "") && cb_cidadeDestino.Text == "") 
+            //        || (cb_cidadeSaida.Text == "" && !(cb_cidadeDestino.Text == "")))
+            //{
+            //    if (!(cb_cidadeSaida.Text == "") && !(cb_cidadeDestino.Text == ""))
+            //    {
+            //        //usuário escolhe um melhor caminho a ser traçado
+            //        if (!(cb_melhorCaminho.Text == ""))
+            //        {
+            //            //não há um melhor caminho a ser traçado
+            //        }
+            //        else
+            //        {
+            //            //caso tenha um melhor caminho a tracar
+            //        }
+            //    }
+            //    else
+            //        MessageBox.Show("Por favor preencha a cidade saída ou destino");
 
-            }
+            //}
+            //else
+            //{
+
+            //}
+
+            buscarCaminho();
 
             //escolher saída e destino
             //recolher dados dos caminhos..pilha
@@ -160,83 +250,55 @@ namespace DirigivelEmMarte
             //4096 x 2048 coordenadas originais
 
         }
+        
 
-        public void LerCidades()
-        {
-
-            StreamReader arq = new StreamReader("C:\\Users\\u17393\\Desktop\\DirigivelEmMarte");
-            String linha = "";
-            int codigo = -1;
-            string cidade = "";
-            int cordx, cordy = 0;
-            while (!arq.EndOfStream)
-            {
-                linha = arq.ReadLine();
-                codigo = Convert.ToInt32(linha.Substring(0, 2).Trim());
-                cidade = linha.Substring(2, 17).Trim();
-
-                //dividindo as coordenadas pelo tamanho do mapa original obtemos uma razão que indica
-                //aonde o ponto se encontra proporcionalmente ao tamanho do mapa, dessa forma, quando 
-                //quisermos encontrar a coordenada, multiplicamos o valor desta pela dimensão do mapa 
-                //exibido na tela
-                cordx =  (Convert.ToInt32(linha.Substring(19, 4).Trim()))/4096;
-                cordy = (Convert.ToInt32(linha.Substring(23).Trim()))/2048;
-
-                listaCidades.InserirAntesDoInicio(new Cidade(codigo, cidade, cordx, cordy));
-            }
-
-            arq.Close();
-        }
-                 
-
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-               
-        }
-
-        private void pbAreaDesenho_Paint(object sender, PaintEventArgs e)
+        public void DesenhaCaminho(Color cor, Graphics g)
         {
             int cidadeAtual, cidadeDestino, xAtual, yAtual, xDestino, yDestino;
             xAtual = 0;
             yAtual = 0;
             xDestino = 0;
             yDestino = 0;
-            Graphics g = e.Graphics;    // acessa contexto gráfico
+            double encontraNovaCordX, encontraNovaCordY;
+            encontraNovaCordX = Math.Round((Convert.ToSingle(pbAreaDesenho.Size.Width) / 4096)*100);
+            encontraNovaCordY = Math.Round((Convert.ToSingle(pbAreaDesenho.Size.Width) / 2048)*100);
+            Console.WriteLine(encontraNovaCordY + "    " + encontraNovaCordX);
 
             while (!caminhoEncontrado.EstaVazia())
             {
-
                 listaCidades.IniciarPercursoSequencial();
-                cidadeAtual = caminhoEncontrado.oTopo().CidadeAtual; // Não sei se é assim que pega, estou fazendo no notepad
+                cidadeAtual = caminhoEncontrado.oTopo().CidadeAtual;
                 cidadeDestino = caminhoEncontrado.oTopo().CidadeDestino;
 
                 while (!listaCidades.ChegouNoFim())
                 {
                     if (listaCidades.Atual.Info.Cod == cidadeAtual)
                     {
-                        xAtual = listaCidades.Atual.Info.CoordX;
-                        yAtual = listaCidades.Atual.Info.CoordY;
+                        xAtual = (listaCidades.Atual.Info.CoordX * Convert.ToInt32(encontraNovaCordX)) / 100;
+                        yAtual = (listaCidades.Atual.Info.CoordY * Convert.ToInt32(encontraNovaCordY)) / 100;
 
                     }
                     else
                     {
                         if (listaCidades.Atual.Info.Cod == cidadeDestino)
                         {
-                            xDestino = listaCidades.Atual.Info.CoordX;
-                            yDestino = listaCidades.Atual.Info.CoordY;
-
+                            xDestino = (listaCidades.Atual.Info.CoordX * Convert.ToInt32(encontraNovaCordX)) / 100;
+                            yDestino = (listaCidades.Atual.Info.CoordY * Convert.ToInt32(encontraNovaCordY)) / 100;
                         }
                     }
+
+                    listaCidades.Avancar();
                 }
 
-                //Pen pen = new Pen(corDesenho); //Alguma cor
-                g.DrawLine(new Pen(Color.Black), xAtual, yAtual, // ponto inicial
-                        xDestino, yDestino); // ponto final
-                                             //Aqui você desenha a linha do xAtual e yAtual até o xDestino e yDestino
+                Pen pen = new Pen(cor); //Alguma cor
+                g.DrawLine(pen, xAtual, yAtual, // ponto inicial
+                    xDestino, yDestino); // ponto final
+                                                    //Aqui você desenha a linha do xAtual e yAtual até o xDestino e yDestino
+                
                 caminhoEncontrado.Desempilhar();
             }
+            //pbAreaDesenho.Invalidate();
         }
-
     }
 
 }

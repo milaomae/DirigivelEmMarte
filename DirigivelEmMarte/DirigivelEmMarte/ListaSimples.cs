@@ -15,7 +15,7 @@ namespace DirigivelEmMarte
 
         public ListaSimples()
         {
-            primeiro = null;
+            Primeiro = null;
             Ultimo = null;
             quantosNos = 0;
         }
@@ -37,7 +37,7 @@ namespace DirigivelEmMarte
         public void IniciarPercursoSequencial()
         {
             anterior = null;
-            atual = primeiro;
+            atual = Primeiro;
         }
 
         public bool ChegouNoFim()
@@ -63,7 +63,7 @@ namespace DirigivelEmMarte
         {
             NoLista<Dado> novoNo = new NoLista<Dado>(informacao, null);
             if (EstaVazia)
-                primeiro = novoNo;
+                Primeiro = novoNo;
             else
                 Ultimo.Prox = novoNo;
             Ultimo = novoNo;
@@ -76,15 +76,15 @@ namespace DirigivelEmMarte
             if (EstaVazia)
                 Ultimo = novoNo;
             else
-                novoNo.Prox = primeiro;
-            primeiro = novoNo;
+                novoNo.Prox = Primeiro;
+            Primeiro = novoNo;
             quantosNos++;
         }
 
         public bool ExisteDado(Dado outroProcurado)
         {
             anterior = null;
-            atual = primeiro;
+            atual = Primeiro;
 
             // Em seguida, é verificado se a lista está vazia. Caso esteja, é
             // retornado false ao local de chamada, indicando que a chave não foi
@@ -97,7 +97,7 @@ namespace DirigivelEmMarte
             // dado procurado é menor que o primeiro dado da lista:
             // portanto, dado procurado não existe
 
-            if (outroProcurado.CompareTo(primeiro.Info) < 0)
+            if (outroProcurado.CompareTo(Primeiro.Info) < 0)
                 return false;
 
             // dado procurado é maior que o último dado da lista:
@@ -193,7 +193,7 @@ namespace DirigivelEmMarte
         }
         public bool EstaVazia
         {
-            get { return primeiro == null; }
+            get { return Primeiro == null; }
         }
 
         public NoLista<Dado> Atual
@@ -204,11 +204,13 @@ namespace DirigivelEmMarte
             }
         }
 
-        public NoLista<Dado> Ultimo { get => ultimo; set => ultimo = value; }
+        public NoLista<Dado> Ultimo { get => Ultimo1; set => Ultimo1 = value; }
+        public NoLista<Dado> Primeiro { get => primeiro; set => primeiro = value; }
+        public NoLista<Dado> Ultimo1 { get => ultimo; set => ultimo = value; }
 
         public void percorrer()
         {
-            atual = primeiro;
+            atual = Primeiro;
             while (atual != null)
             {
                 MessageBox.Show(atual.Info.ToString());
@@ -224,10 +226,10 @@ namespace DirigivelEmMarte
             // se o fluxo de execução segue para cá, a lista não
             // está vazia e, portanto, temos ao menos um nó
 
-            if (atu == primeiro)  // queremos excluir o 1o nó
+            if (atu == Primeiro)  // queremos excluir o 1o nó
             {
-                primeiro = primeiro.Prox;  // aponta o 2o nó
-                if (primeiro == null)
+                Primeiro = Primeiro.Prox;  // aponta o 2o nó
+                if (Primeiro == null)
                     Ultimo = null;
             }
             else
@@ -254,7 +256,7 @@ namespace DirigivelEmMarte
         public void SalvarNoArquivo(string nomeArquivo)
         {
             var arq = new StreamWriter(nomeArquivo);
-            atual = primeiro;
+            atual = Primeiro;
             while (atual != null)
             {
                 arq.WriteLine(atual.Info.ToString());
@@ -268,7 +270,7 @@ namespace DirigivelEmMarte
             umListBox.Items.Clear();
             umListBox.Items.Add(cabecalho);
 
-            atual = primeiro;
+            atual = Primeiro;
             while (atual != null)
             {
                 umListBox.Items.Add(atual.Info.ToString());
@@ -279,7 +281,7 @@ namespace DirigivelEmMarte
         public int Contar()
         {
             int contagemAtual = 0;
-            atual = primeiro;
+            atual = Primeiro;
             while (atual != null)
             {
                 contagemAtual++;
@@ -292,8 +294,8 @@ namespace DirigivelEmMarte
         {
             var result = new ListaSimples<Dado>();
 
-            this.atual = this.primeiro;         // posicionamos ponteiro atual no início da lista this
-            outra.atual = outra.primeiro;       // posicionamos ponteiro atual no início da lista outra
+            this.atual = this.Primeiro;         // posicionamos ponteiro atual no início da lista this
+            outra.atual = outra.Primeiro;       // posicionamos ponteiro atual no início da lista outra
 
             while (this.atual != null && outra.atual != null)  // enquanto uma das listas ainda não acabou
             {
@@ -342,8 +344,8 @@ namespace DirigivelEmMarte
 
             if (!EstaVazia)
             {
-                um = primeiro;
-                dois = primeiro.Prox;
+                um = Primeiro;
+                dois = Primeiro.Prox;
                 while (dois != null)
                 {
                     tres = dois.Prox;
@@ -351,8 +353,8 @@ namespace DirigivelEmMarte
                     um = dois;
                     dois = tres;
                 }
-                Ultimo = primeiro;
-                primeiro = um;
+                Ultimo = Primeiro;
+                Primeiro = um;
                 Ultimo.Prox = null;
             }
         }

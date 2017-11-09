@@ -18,3 +18,13 @@ C:\Users\John\Documents\Chico\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte
 C:\Users\John\Documents\Chico\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.pdb
 C:\Users\John\Documents\Chico\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.Form1.resources
 C:\Users\John\Documents\Chico\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.csproj.CoreCompileInputs.cache
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.exe.config
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.exe
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.pdb
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.csprojResolveAssemblyReference.cache
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.Form1.resources
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.Properties.Resources.resources
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.csproj.GenerateResource.Cache
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.csproj.CoreCompileInputs.cache
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.exe
+C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.pdb

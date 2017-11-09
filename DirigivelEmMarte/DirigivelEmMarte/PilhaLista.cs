@@ -9,24 +9,37 @@ namespace DirigivelEmMarte
     class PilhaLista<Dado> : ListaSimples<Dado>, IStack<Dado>
                              where Dado : IComparable<Dado>
     {
+        public PilhaLista() : base()
+        {
+
+        }
+
         public Dado Desempilhar()
         {
-            throw new NotImplementedException();
+            if (base.EstaVazia)
+                throw new PilhaVaziaException("Underflow: pilha esvaziou.");
+
+            Dado retornado = Primeiro.Info;
+            Remover(null, Primeiro);
+            return retornado;
         }
 
         public void Empilhar(Dado dado)
         {
-            throw new NotImplementedException();
+            InserirAposFim(dado);
         }
 
-        public bool EstaVazia()
+        public new bool EstaVazia()
         {
             return base.EstaVazia;
         }
 
         public Dado oTopo()
         {
-            return base.Ultimo.Info;
+            if (base.EstaVazia)
+                throw new PilhaVaziaException("Underflow: pilha esvaziou.");
+
+            return Primeiro.Info;
         }
 
         public int Tamanho()

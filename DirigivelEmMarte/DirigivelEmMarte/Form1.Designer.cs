@@ -38,7 +38,10 @@ namespace DirigivelEmMarte
             this.cb_melhorCaminho = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_tracarMelhores = new System.Windows.Forms.Button();
+            this.stMensagem = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbAreaDesenho)).BeginInit();
+            this.stMensagem.SuspendLayout();
             this.SuspendLayout();
             // 
             // fileDialog
@@ -57,7 +60,7 @@ namespace DirigivelEmMarte
             this.pbAreaDesenho.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbAreaDesenho.TabIndex = 0;
             this.pbAreaDesenho.TabStop = false;
-            this.pbAreaDesenho.Paint += new System.Windows.Forms.PaintEventHandler(this.pbAreaDesenho_Paint);
+            this.pbAreaDesenho.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbAreaDesenho_MouseMove);
             // 
             // btnTracarCam
             // 
@@ -131,11 +134,27 @@ namespace DirigivelEmMarte
             this.btn_tracarMelhores.Text = "Traçar todos melhores caminhos";
             this.btn_tracarMelhores.UseVisualStyleBackColor = true;
             // 
+            // stMensagem
+            // 
+            this.stMensagem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.stMensagem.Location = new System.Drawing.Point(0, 567);
+            this.stMensagem.Name = "stMensagem";
+            this.stMensagem.Size = new System.Drawing.Size(721, 22);
+            this.stMensagem.TabIndex = 9;
+            this.stMensagem.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 588);
+            this.ClientSize = new System.Drawing.Size(721, 589);
+            this.Controls.Add(this.stMensagem);
             this.Controls.Add(this.btn_tracarMelhores);
             this.Controls.Add(this.cb_melhorCaminho);
             this.Controls.Add(this.label3);
@@ -151,7 +170,10 @@ namespace DirigivelEmMarte
             this.MinimumSize = new System.Drawing.Size(737, 627);
             this.Name = "Form1";
             this.Text = "Dirigível em Marte";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbAreaDesenho)).EndInit();
+            this.stMensagem.ResumeLayout(false);
+            this.stMensagem.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,6 +191,8 @@ namespace DirigivelEmMarte
         private System.Windows.Forms.ComboBox cb_melhorCaminho;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_tracarMelhores;
+        private System.Windows.Forms.StatusStrip stMensagem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
