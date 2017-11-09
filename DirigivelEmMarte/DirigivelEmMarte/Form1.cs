@@ -37,7 +37,7 @@ namespace DirigivelEmMarte
 
         public void LerCaminhos()
         {
-            StreamReader arquivo = new StreamReader("C:\\Users\\comae\\Desktop\\DirigivelEmMarte\\CaminhosEntreCidadesMarte.txt");
+            StreamReader arquivo = new StreamReader("C:\\Users\\u17393\\Desktop\\DirigivelEmMarte\\CaminhosEntreCidadesMarte.txt");
             String linha = "";
             int cidadeAtual, cidadeDestino, tempo;
             double preco, distancia;
@@ -60,7 +60,7 @@ namespace DirigivelEmMarte
 
         public void LerCidades()
         {
-            StreamReader arq = new StreamReader("C:\\Users\\comae\\Desktop\\DirigivelEmMarte\\CidadesMarte.txt");
+            StreamReader arq = new StreamReader("C:\\Users\\u17393\\Desktop\\DirigivelEmMarte\\CidadesMarte.txt");
             String linha = "";
             int codigo = -1;
             string cidade = "";
@@ -86,6 +86,10 @@ namespace DirigivelEmMarte
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            pbAreaDesenho.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+
+            pbAreaDesenho.Invalidate();
+
             LerCidades();            
 
             //limpando combobox
@@ -115,6 +119,10 @@ namespace DirigivelEmMarte
         public void buscarCaminho()
         {
             int cidadeAtual, cidadeDestino;
+
+            //verifica se já passou por um caminho
+            bool[] jaPassou = new bool[listaCidades.QuantosNos];
+
             //pega o valor do comboBox de melhor caminho
             caso = cb_melhorCaminho.SelectedIndex;
 
@@ -144,9 +152,11 @@ namespace DirigivelEmMarte
                     {
                         for (; cidadeDestino < 23; cidadeDestino++)
                         {
-                            if (caminhoMatriz[cidadeAtual, cidadeDestino] != null)
+                            if (caminhoMatriz[cidadeAtual, cidadeDestino] != null && !jaPassou[cidadeAtual])
                             {
                                 caminhoPilha.Empilhar(caminhoMatriz[cidadeAtual, cidadeDestino]);
+                                //a cidade que ele irá será marcada, para saber que esse caminho já foi feito
+                                jaPassou[cidadeDestino] = true;
                                 cidadeAtual = cidadeDestino;
                                 cidadeDestino = 0;
                                 break;
@@ -156,27 +166,34 @@ namespace DirigivelEmMarte
                         if (cidadeFinal == caminhoPilha.oTopo().CidadeDestino)
                         {
                             //Achei
-                             caminhoEncontrado.Empilhar(caminhoPilha.Desempilhar());
-                            if (!caminhoPilha.EstaVazia())
+                            while (!caminhoPilha.EstaVazia())
                             {
-                                cidadeAtual = caminhoPilha.oTopo().CidadeAtual;
-                                cidadeDestino = caminhoPilha.oTopo().CidadeDestino;
+                                if (!caminhoPilha.EstaVazia())
+                                    caminhoEncontrado.Empilhar(caminhoPilha.Desempilhar());
+                                if (!caminhoPilha.EstaVazia())
+                                {
+                                    cidadeAtual = caminhoPilha.oTopo().CidadeAtual;
+                                    cidadeDestino = caminhoPilha.oTopo().CidadeDestino;
+                                }
                             }
-                            
+                            //reinicializa o vetor de cidades já passadas
+                            for (int i = 0; i < listaCidades.QuantosNos; i++)
+                                jaPassou[i] = false;
 
-                            DesenhaCaminho(corDesenho, pbAreaDesenho.CreateGraphics());                         
-
-                            
-                            
-
+                            DesenhaCaminho(corDesenho, pbAreaDesenho.CreateGraphics());  
                         }
                         else
                         {
-                            if (cidadeDestino >= 23)
+                            if (cidadeDestino >= listaCidades.QuantosNos)
                             {
-                                caminhoPilha.Desempilhar();
-                                cidadeAtual = caminhoPilha.oTopo().CidadeAtual;
-                                cidadeDestino = caminhoPilha.oTopo().CidadeDestino;
+                                if (!caminhoPilha.EstaVazia())
+                                {
+                                    caminhoPilha.Desempilhar();
+                                    if (!caminhoPilha.EstaVazia()) { 
+                                    cidadeAtual = caminhoPilha.oTopo().CidadeAtual;
+                                    cidadeDestino = caminhoPilha.oTopo().CidadeDestino;
+                                }
+                                }
 
                             }
                         }
@@ -259,9 +276,10 @@ namespace DirigivelEmMarte
             yAtual = 0;
             xDestino = 0;
             yDestino = 0;
+            //encontra a porcentagem que as coordenadas devem apresentar com o novo tamanho do mapa 
             double encontraNovaCordX, encontraNovaCordY;
             encontraNovaCordX = Math.Round((Convert.ToSingle(pbAreaDesenho.Size.Width) / 4096)*100);
-            encontraNovaCordY = Math.Round((Convert.ToSingle(pbAreaDesenho.Size.Width) / 2048)*100);
+            encontraNovaCordY = Math.Round((Convert.ToSingle(pbAreaDesenho.Size.Height) / 2048)*100);
             Console.WriteLine(encontraNovaCordY + "    " + encontraNovaCordX);
 
             while (!caminhoEncontrado.EstaVazia())
@@ -290,9 +308,9 @@ namespace DirigivelEmMarte
                     listaCidades.Avancar();
                 }
 
-                Pen pen = new Pen(cor); //Alguma cor
-                g.DrawLine(pen, xAtual, yAtual, // ponto inicial
-                    xDestino, yDestino); // ponto final
+                Pen pen = new Pen(cor, Convert.ToSingle(5)); //Alguma cor
+                g.DrawLine(pen, xAtual, yAtual+1, // ponto inicial
+                    xDestino+6, yDestino+2); // ponto final
                                                     //Aqui você desenha a linha do xAtual e yAtual até o xDestino e yDestino
                 
                 caminhoEncontrado.Desempilhar();

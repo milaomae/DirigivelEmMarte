@@ -81,6 +81,16 @@ namespace DirigivelEmMarte
             quantosNos++;
         }
 
+        public void InserirAntesDoInicio(NoLista<Dado> novoNo)
+        {
+            if (EstaVazia)       // se a lista está vazia, estamos
+                ultimo = novoNo; // incluindo o 1o e o último nós!
+
+            novoNo.Prox = primeiro; // faz o novo nó apontar para o nó
+            primeiro = novoNo;      // atualmente no início da lista
+            quantosNos++;           // (que pode ser null)
+        }
+
         public bool ExisteDado(Dado outroProcurado)
         {
             anterior = null;
@@ -204,9 +214,9 @@ namespace DirigivelEmMarte
             }
         }
 
-        public NoLista<Dado> Ultimo { get => Ultimo1; set => Ultimo1 = value; }
-        public NoLista<Dado> Primeiro { get => primeiro; set => primeiro = value; }
-        public NoLista<Dado> Ultimo1 { get => ultimo; set => ultimo = value; }
+        public NoLista<Dado> Ultimo { get { return ultimo; } set { ultimo = value; } }
+        public NoLista<Dado> Primeiro { get { return primeiro; } set { primeiro = value; } }
+        
 
         public void percorrer()
         {
@@ -218,36 +228,33 @@ namespace DirigivelEmMarte
             }
         }
 
-        public void Remover(NoLista<Dado> ant, NoLista<Dado> atu)
+        public void Remover(ref NoLista<Dado> ant, ref NoLista<Dado> atu)
         {
-            if (EstaVazia)
-                return;
-
-            // se o fluxo de execução segue para cá, a lista não
-            // está vazia e, portanto, temos ao menos um nó
-
-            if (atu == Primeiro)  // queremos excluir o 1o nó
+            if (!EstaVazia)
             {
-                Primeiro = Primeiro.Prox;  // aponta o 2o nó
-                if (Primeiro == null)
-                    Ultimo = null;
-            }
-            else
-              if (atu == Ultimo)    // vamos excluir o último nó
-            {
-                ant.Prox = null;
-                Ultimo = ant;       // aponta quem era penúltimo
-            }
-            else
-                ant.Prox = atu.Prox;
+                if (atual == primeiro)
+                {
+                    primeiro = primeiro.Prox;
+                    if (EstaVazia)
+                        ultimo = null;
+                }
+                else
+                  if (atual == ultimo)
+                {
+                    ultimo = anterior;
+                    ultimo.Prox = null;
+                }
+                else
+                    anterior.Prox = atual.Prox;
 
-            quantosNos--;  // removemos um nó, acertamos a contagem
+                quantosNos--;
+            }
         }
         public bool Remover(Dado info)
         {
             if (ExisteDado(info))  // ExisteDado posiciona anterior e atual
             {
-                Remover(anterior, atual);
+                Remover(ref anterior, ref atual);
                 return true;   // conseguimos remover o nó
             }
             else

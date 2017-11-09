@@ -20,11 +20,11 @@ namespace DirigivelEmMarte
             this.distancia = distancia;
         }
 
-        public int CidadeAtual { get => cidadeAtual; set => cidadeAtual = value; }
-        public int CidadeDestino { get => cidadeDestino; set => cidadeDestino = value; }
-        public int Tempo { get => tempo; set => tempo = value; }
-        public double Preco { get => preco; set => preco = value; }
-        public double Distancia { get => distancia; set => distancia = value; }
+        public int CidadeAtual { get { return cidadeAtual; } set { cidadeAtual = value; } }
+        public int CidadeDestino { get { return cidadeDestino; } set { cidadeDestino = value; } }
+        public int Tempo { get { return tempo; } set { tempo = value; } }
+        public double Preco { get { return preco; } set { preco = value; } }
+        public double Distancia { get { return distancia; } set { distancia = value; } }
 
         public int CompareTo(Caminho other)
         {

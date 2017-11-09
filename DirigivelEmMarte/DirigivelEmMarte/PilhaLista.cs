@@ -16,35 +16,41 @@ namespace DirigivelEmMarte
 
         public Dado Desempilhar()
         {
-            if (base.EstaVazia)
-                throw new PilhaVaziaException("Underflow: pilha esvaziou.");
+            if (EstaVazia())
+            throw new PilhaVaziaException("pilha vazia!");
 
-            Dado retornado = Primeiro.Info;
-            Remover(null, Primeiro);
-            return retornado;
+            Dado valor = base.Primeiro.Info;
+
+            NoLista<Dado> pri = base.Primeiro;
+            NoLista<Dado> ant = null;
+            base.Remover(ref pri, ref ant);
+            return valor;
         }
 
-        public void Empilhar(Dado dado)
-        {
-            InserirAposFim(dado);
-        }
+            public void Empilhar(Dado elemento)
+            {
+                base.InserirAntesDoInicio
+                      (
+                        new NoLista<Dado>(elemento, null)
+                      );
+            }
 
-        public new bool EstaVazia()
-        {
-            return base.EstaVazia;
-        }
+            new public bool EstaVazia()
+            {
+                return base.EstaVazia;
+            }
 
-        public Dado oTopo()
-        {
-            if (base.EstaVazia)
-                throw new PilhaVaziaException("Underflow: pilha esvaziou.");
+            public Dado oTopo()
+            {
+                if (EstaVazia())
+                    throw new PilhaVaziaException("pilha vazia!");
 
-            return Primeiro.Info;
-        }
+                return base.Primeiro.Info;
+            }
 
-        public int Tamanho()
-        {
-            return base.QuantosNos + 1;
+            public int Tamanho()
+            {
+                return base.QuantosNos;
+            }
         }
-    }
 }
