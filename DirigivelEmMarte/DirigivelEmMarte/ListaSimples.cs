@@ -228,7 +228,7 @@ namespace DirigivelEmMarte
             }
         }
 
-        public void Remover(ref NoLista<Dado> ant, ref NoLista<Dado> atu)
+        public void Remover(ref NoLista<Dado> anterior, ref NoLista<Dado> atual)
         {
             if (!EstaVazia)
             {

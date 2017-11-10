@@ -23,7 +23,7 @@ namespace DirigivelEmMarte
 
             NoLista<Dado> pri = base.Primeiro;
             NoLista<Dado> ant = null;
-            base.Remover(ref pri, ref ant);
+            base.Remover(ref ant, ref pri);
             return valor;
         }
 
@@ -52,5 +52,7 @@ namespace DirigivelEmMarte
             {
                 return base.QuantosNos;
             }
+
+                        
         }
 }
