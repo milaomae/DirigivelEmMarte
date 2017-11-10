@@ -161,6 +161,9 @@ namespace DirigivelEmMarte
                             if (caminhoMatriz[cidadeAtual, cidadeDestino] != null && !jaPassou[cidadeDestino])
                             {
                                 caminhoPilha.Empilhar(caminhoMatriz[cidadeAtual, cidadeDestino]);
+                                //PARA TESTE : ver os caminhos que estão sendo empilhados
+                                Console.WriteLine("CAMINHO EMPILHADO(caminhoPilha): "caminhoPilha.oTopo().CidadeAtual + "  " caminhoPilha.oTopo().CidadeDestino);
+                                
                                 //a cidade que ele irá será marcada, para saber que esse caminho já foi feito
                                 jaPassou[cidadeAtual] = true;
                                 cidadeAtual = cidadeDestino;
@@ -173,6 +176,7 @@ namespace DirigivelEmMarte
                         {
                             while (!caminhoPilha.EstaVazia())
                             {
+                                Console.WriteLine("CAMINHO ENCONTRADO(caminhoEncontrado): "caminhoPilha.oTopo().CidadeAtual + "  " caminhoPilha.oTopo().CidadeDestino);
                                 caminhoEncontrado.Empilhar(caminhoPilha.Desempilhar());
                             }
 
@@ -185,6 +189,8 @@ namespace DirigivelEmMarte
                                 jaPassou[caminhoPilha.oTopo().CidadeDestino] = true;
                                 //reinicializa a cidade anterior com false, para percorrer o próximo caminho existente nela
                                 jaPassou[caminhoPilha.oTopo().CidadeAtual] = false;
+                                Console.WriteLine("CAMINHO A SER RETIRADO QUANDO UM CAMINHO JA FOI ENCONTRADO(caminhoPilha): "caminhoPilha.oTopo().CidadeAtual + "  " caminhoPilha.oTopo().CidadeDestino);
+                                
                                 caminhoEncontrado.Desempilhar();
                                 if (!caminhoPilha.EstaVazia())
                                 {
@@ -200,8 +206,11 @@ namespace DirigivelEmMarte
                                     for (; cidadeDestino < 23; cidadeDestino++)
                                     {
                                         if (caminhoMatriz[cidadeAtual, cidadeDestino] != null && !jaPassou[cidadeDestino])
-                                        {
+                                        {   
+                                        
                                             caminhoPilha.Empilhar(caminhoMatriz[cidadeAtual, cidadeDestino]);
+                                            Console.WriteLine("ENCONTRANDO O PROXIMO CAMINHO A SER RETIRADO DEPOIS DE ACHAR UM CAMINHO E DESEMPILHAR(caminhoPilha): "caminhoPilha.oTopo().CidadeAtual + "  " caminhoPilha.oTopo().CidadeDestino);
+                                
                                             //a cidade que ele irá será marcada, para saber que esse caminho já foi feito
                                             jaPassou[cidadeAtual] = true;
                                             cidadeAtual = cidadeDestino;
@@ -230,6 +239,8 @@ namespace DirigivelEmMarte
                                 jaPassou[caminhoPilha.oTopo().CidadeDestino] = true;
                                 //reinicializa a cidade anterior com false, para percorrer o próximo caminho existente nela
                                 jaPassou[caminhoPilha.oTopo().CidadeAtual] = false;
+                                Console.WriteLine("CAMINHO A SER DESEMPILHADO APOS TODOS OS CAMINHOS TEREM SIDO VERIFICADOS(caminhoPilha): "caminhoPilha.oTopo().CidadeAtual + "  " caminhoPilha.oTopo().CidadeDestino);
+                                
                                 caminhoPilha.Desempilhar();
                                 if (!caminhoPilha.EstaVazia())
                                 {
@@ -246,6 +257,8 @@ namespace DirigivelEmMarte
                                     {
                                         if (caminhoMatriz[cidadeAtual, cidadeDestino] != null && !jaPassou[cidadeDestino])
                                         {
+                                        Console.WriteLine("CAMINHO EMPILHADO APOS VOLTAR UM CAMINHO--> DPS QUE PROCUROU TODOS OS POSSIVEIS NO ANTERIOR(caminhoPilha): "caminhoPilha.oTopo().CidadeAtual + "  " caminhoPilha.oTopo().CidadeDestino);
+                                
                                             caminhoPilha.Empilhar(caminhoMatriz[cidadeAtual, cidadeDestino]);
                                             //a cidade que ele irá será marcada, para saber que esse caminho já foi feito
                                             jaPassou[cidadeAtual] = true;
