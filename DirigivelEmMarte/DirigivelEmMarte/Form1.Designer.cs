@@ -138,7 +138,7 @@ namespace DirigivelEmMarte
             // 
             this.stMensagem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.stMensagem.Location = new System.Drawing.Point(0, 567);
+            this.stMensagem.Location = new System.Drawing.Point(0, 566);
             this.stMensagem.Name = "stMensagem";
             this.stMensagem.Size = new System.Drawing.Size(721, 22);
             this.stMensagem.TabIndex = 9;
@@ -153,7 +153,7 @@ namespace DirigivelEmMarte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 589);
+            this.ClientSize = new System.Drawing.Size(721, 588);
             this.Controls.Add(this.stMensagem);
             this.Controls.Add(this.btn_tracarMelhores);
             this.Controls.Add(this.cb_melhorCaminho);

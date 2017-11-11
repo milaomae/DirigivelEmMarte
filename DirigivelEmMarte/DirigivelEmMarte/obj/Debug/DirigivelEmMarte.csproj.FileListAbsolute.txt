@@ -28,3 +28,12 @@ C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\De
 C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.csproj.CoreCompileInputs.cache
 C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.exe
 C:\Users\comae\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.pdb
+C:\Users\Lucas\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.exe.config
+C:\Users\Lucas\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.exe
+C:\Users\Lucas\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.pdb
+C:\Users\Lucas\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.exe
+C:\Users\Lucas\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\bin\Debug\DirigivelEmMarte.pdb
+C:\Users\Lucas\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.csprojResolveAssemblyReference.cache
+C:\Users\Lucas\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.Form1.resources
+C:\Users\Lucas\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.Properties.Resources.resources
+C:\Users\Lucas\Desktop\DirigivelEmMarte\DirigivelEmMarte\DirigivelEmMarte\obj\Debug\DirigivelEmMarte.csproj.GenerateResource.Cache
